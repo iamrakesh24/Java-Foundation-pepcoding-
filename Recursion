@@ -165,3 +165,33 @@ public class Main {
     }
 
 }
+
+
+Q.7) Print Zig-Zag
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner s = new Scanner(System.in);
+        int x = s.nextInt();
+        pzz(x);
+    }
+
+    public static void pzz(int n){
+        if(n==0){
+            return ;
+        }
+        System.out.print(n+" "); // pre call
+        pzz(n-1);
+        System.out.print(n+" "); // in-call
+        pzz(n-1);
+        System.out.print(n+" "); // post-call
+    }
+
+}
