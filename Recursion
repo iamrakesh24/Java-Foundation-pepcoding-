@@ -22,3 +22,29 @@ public class Main {
     }
 
 }
+
+
+Q.2) Print Increasing
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner s = new Scanner(System.in);
+        int x = s.nextInt();
+        printIncreasing(x);
+        
+    }
+
+    public static void printIncreasing(int n){
+        if(n == 0){
+            return;
+        }
+        printIncreasing(n-1);
+        System.out.println(n);
+    }
+
+}
