@@ -456,3 +456,43 @@ public class Main {
     }
 
 }
+
+
+
+Q.2) Get key pad combination
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+            Scanner s = new Scanner(System.in);
+            String str = s.next();
+            System.out.print(getKPC(str));
+    }
+    static String [] codes = {".;","abc","def" ,"ghi","jkl","mno","pqrs","tu","vwx","yz"};
+    public static ArrayList<String> getKPC(String str) {
+        if(str.length() == 0){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        
+        char first = str.charAt(0);
+        String remaining = str.substring(1);
+        ArrayList<String> result = getKPC(remaining);
+        ArrayList<String> myresult = new ArrayList<>();
+        String required = codes[first - '0'];
+        for(int i = 0 ; i < required.length() ; i++){
+            char x = required.charAt(i);
+            for(String rr:result){
+                myresult.add(x+rr);
+            }
+        }
+        return myresult;
+    }
+
+}
