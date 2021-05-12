@@ -403,3 +403,56 @@ public class Main {
     }
 
 }
+
+
+
+
+
+
+
+----------------------------RECURSION    WITH     ARRAY    LIST------------------------------------------------
+
+
+
+Q.1) Print subsequences of a string
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+       Scanner s = new Scanner(System.in);
+       String str = s.next();
+       System.out.print(gss(str));
+    }
+    
+    // bc --> [-- , -c , b- , bc]
+    // abc --> [--- , --c , -b- , -bc , a-- ,a-c , ab- , abc]
+
+    public static ArrayList<String> gss(String str) {
+          
+          if(str.length() == 0){
+              ArrayList<String>base = new ArrayList<>();
+              base.add("");
+              return base;
+          }
+          char first = str.charAt(0);
+          String remaining = str.substring(1);
+          ArrayList<String> result = gss(remaining);
+          ArrayList<String> myresult = new ArrayList<>();
+          
+          for(String x:result){
+              myresult.add(""  + x);
+              
+          }
+          for(String x:result){
+              
+              myresult.add(first + x);
+          }
+          return myresult;
+    }
+
+}
