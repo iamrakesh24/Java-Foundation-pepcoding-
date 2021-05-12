@@ -188,9 +188,9 @@ public class Main {
             return ;
         }
         System.out.print(n+" "); // pre call
-        pzz(n-1);
+        pzz(n-1);                // left call
         System.out.print(n+" "); // in-call
-        pzz(n-1);
+        pzz(n-1);                // right call
         System.out.print(n+" "); // post-call
     }
 
