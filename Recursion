@@ -496,3 +496,51 @@ public class Main {
     }
 
 }
+
+
+Q.3) Get Staircase paths
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+           Scanner s = new Scanner(System.in);
+           int x = s.nextInt();
+           System.out.print(getStairPaths(x));
+    }
+
+    public static ArrayList<String> getStairPaths(int n) {
+        if(n == 0){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }else if(n < 0){
+            ArrayList<String> base = new ArrayList<>();
+            return base;
+        }
+        
+        
+        ArrayList<String> paths1 = getStairPaths(n-1);
+        
+        ArrayList<String> paths2 = getStairPaths(n-2);
+        
+        ArrayList<String> paths3 = getStairPaths(n-3);
+        ArrayList<String> result = new ArrayList<>();
+        for(String x : paths1){
+            result.add(1 + x);
+        }
+         for(String x : paths2){
+            result.add(2 + x);
+        }
+         for(String x : paths3){
+            result.add(3 + x);
+        }
+        return result;
+        
+    }
+
+}
