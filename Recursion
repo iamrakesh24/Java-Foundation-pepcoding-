@@ -593,3 +593,56 @@ public class Main {
     }
 
 }
+
+
+Q.5)  Get maze paths with jumps
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner s  = new Scanner(System.in);
+        int row  = s.nextInt();
+        int col = s.nextInt();
+        System.out.print(getMazePaths(1,1,row,col));
+
+    }
+
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+        if( sr == dr && sc == dc ){
+            ArrayList<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        ArrayList<String> answer = new ArrayList<>();
+        // horizontal moves
+        for(int movesize = 1 ; movesize <= dc - sc ; movesize++){
+            ArrayList<String>hpaths = getMazePaths(sr,sc+movesize,dr,dc);
+            for(String x:hpaths){
+                answer.add("h" + movesize  + x);
+            }
+        }
+        // vertical paths
+         for(int movesize = 1 ; movesize <= dr - sr ; movesize++){
+            ArrayList<String>vpaths = getMazePaths(sr+movesize,sc,dr,dc);
+            for(String x:vpaths){
+                answer.add("v" + movesize  + x);
+            }
+        }
+         for(int movesize = 1 ; movesize <= dc - sc && movesize <= dr - sr ; movesize++){
+            ArrayList<String>dpaths = getMazePaths(sr+movesize,sc+movesize,dr,dc);
+            for(String x:dpaths){
+                answer.add("d" + movesize  + x);
+            }
+        }
+        return answer;
+    }
+
+}
