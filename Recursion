@@ -646,3 +646,37 @@ public class Main {
     }
 
 }
+
+
+
+
+---------------------------RECURSION   ON    THE   WAY   UP----------------------
+
+
+Q.1) Print subsequences
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+           Scanner s = new Scanner(System.in);
+           String str = s.next();
+           printSS(str,"");
+    }
+
+    public static void printSS(String str, String ans) {
+        if(str.length() == 0){
+            System.out.println(ans);
+            return;
+        }
+        char first = str.charAt(0);
+        String remaining = str.substring(1);
+        printSS(remaining , ans + first);
+        printSS(remaining  , ans + "");
+    }
+
+}
