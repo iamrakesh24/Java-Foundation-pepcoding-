@@ -780,3 +780,42 @@ import java.io.*;
 	    }
 
 	}
+
+
+Q.5) Print Maze Paths with jumps
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+         Scanner s = new Scanner(System.in);
+         int row = s.nextInt();
+         int col = s.nextInt();
+         printMazePaths(1 , 1, row , col , "");
+    }
+
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static void printMazePaths(int sr, int sc, int dr, int dc, String psf) {
+        if(sr == dr && sc == dc){
+            System.out.println(psf);
+        }
+        //horizontally
+        for(int ms = 1 ; ms <= dc-sc ; ms++){
+            printMazePaths(sr , sc+ms , dr , dc , psf + "h" + ms);
+        }
+        //vertically
+         for(int ms = 1 ; ms <= dr-sr ; ms++){
+            printMazePaths(sr+ms , sc , dr , dc , psf + "v" + ms);
+        }
+        //diagonally
+         for(int ms = 1 ; ms <= dr-sr && ms <= dc-sc ; ms++){
+            printMazePaths(sr+ms , sc+ms , dr , dc , psf + "d" + ms);
+        }
+    }
+
+}
