@@ -819,3 +819,35 @@ public class Main {
     }
 
 }
+
+
+
+
+Q.6) Print Permutations
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+           Scanner s  = new Scanner(System.in);
+           String st =  s.next();
+           printPermutations(st , "");
+    }
+
+    public static void printPermutations(String str, String asf) {
+           if(str.length() == 0){
+               System.out.println(asf);
+           }
+           for(int i = 0 ; i < str.length() ; i++){
+               char x = str.charAt(i);
+               String left = str.substring(0 , i);
+               String right = str.substring(i + 1);
+               String remaining  =  left + right;
+               printPermutations(remaining , asf + x);
+           }
+    }
+
+}
