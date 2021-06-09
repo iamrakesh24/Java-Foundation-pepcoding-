@@ -1,1 +1,32 @@
 
+Q.1 -----Fibbonaci dp-----------
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    // int [] qb = new int[n+1];
+    System.out.print(fibbmemoized(n , new int[n+1]));
+    
+    
+ }
+ public static int fibbmemoized(int n , int [] qb){
+     if(n == 0 || n == 1){
+         return n;
+     }
+     if(qb[n]!= 0){
+         return fibbn;
+     }
+     int fibbn1 = fibbmemoized(n-1 , qb);
+     int fibbn2 = fibbmemoized(n-2 , qb);
+     int fibbn = fibbn1 + fibbn2;
+     qb[n] = fibbn;
+     return fibbn;
+ }
+
+}
