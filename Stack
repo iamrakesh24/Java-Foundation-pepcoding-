@@ -556,3 +556,64 @@ public static void main(String[] args) throws Exception {
     
  }
 }
+
+
+Q.10) Prefix evaluation and conversion
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  public static int operation(int v1, int v2, char op){
+      if(op == '+'){
+          return v1+v2;
+      }
+      else if(op == '-'){
+          return v1-v2;
+      }
+      else if(op == '*'){
+          return v1*v2;
+      }
+      else{
+          return v1/v2;
+      }
+  }
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+
+    // code
+    Stack<Integer>valstack = new Stack<>();
+    Stack<String>infixstack = new Stack<>();
+    Stack<String>postfixstack = new Stack<>();
+    for(int i = exp.length()-1 ; i >=0 ; i--){
+        char ch = exp.charAt(i);
+        if(ch == '+' || ch == '-' || ch == '*' || ch == '/'){
+            int v1 = valstack.pop();
+            int v2 = valstack.pop();
+            int val = operation(v1,v2,ch);
+            valstack.push(val);
+            
+            String infv1 = infixstack.pop();
+            String infv2 = infixstack.pop();
+            String infval = "(" + infv1 + ch + infv2 + ")";
+            infixstack.push(infval);
+            
+            String postv1 = postfixstack.pop();
+            String postv2 = postfixstack.pop();
+            String postval = postv1 + postv2 + ch;
+            postfixstack.push(postval);
+        }
+        else{
+            valstack.push(ch - '0');
+            infixstack.push(ch + "");
+            postfixstack.push(ch + "");
+        }
+    }
+    System.out.println(valstack.peek());
+    System.out.println(infixstack.peek());
+    System.out.println(postfixstack.peek());
+    
+ }
+}
