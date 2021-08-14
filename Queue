@@ -207,3 +207,501 @@ public class Main {
     }
   }
 }
+
+
+Q.3) Queue to Stack Adapater - Push efficient
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static class QueueToStackAdapter {
+    Queue<Integer> mainQ;
+    Queue<Integer> helperQ;
+
+    public QueueToStackAdapter() {
+      mainQ = new ArrayDeque<>();
+      helperQ = new ArrayDeque<>();
+    }
+
+    int size() {
+      // write your code here
+      return mainQ.size();
+    }
+
+    void push(int val) {
+      // write your code here
+     mainQ.add(val);
+    }
+
+    int top() {
+      // write your code here
+      if( size() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          while(mainQ.size() > 1){
+              helperQ.add(mainQ.remove());
+          }
+          int val = mainQ.remove();
+          helperQ.add(val);
+          
+          
+          while(helperQ.size() > 0){
+              mainQ.add(helperQ.remove());
+          }
+        return val;
+      }
+      
+    }
+
+    int pop() {
+      // write your code here
+       if( size() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          while(mainQ.size() > 1){
+              helperQ.add(mainQ.remove());
+          }
+          int val = mainQ.remove();
+          
+          
+          while(helperQ.size() > 0){
+              mainQ.add(helperQ.remove());
+          }
+         return val;
+    }
+    
+  }
+  }
+
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    QueueToStackAdapter st = new QueueToStackAdapter();
+
+    String str = br.readLine();
+    while (str.equals("quit") == false) {
+      if (str.startsWith("push")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        st.push(val);
+      } else if (str.startsWith("pop")) {
+        int val = st.pop();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("top")) {
+        int val = st.top();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size")) {
+        System.out.println(st.size());
+      }
+      str = br.readLine();
+    }
+  }
+}
+  
+Q.4) Queue to Stack Adapter- Pop Efficient
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static class QueueToStackAdapter {
+    Queue<Integer> mainQ;
+    Queue<Integer> helperQ;
+
+    public QueueToStackAdapter() {
+      mainQ = new ArrayDeque<>();
+      helperQ = new ArrayDeque<>();
+    }
+
+    int size() {
+      // write your code here
+      return mainQ.size();
+    }
+
+    void push(int val) {
+      // write your code here
+      while(mainQ.size() > 0){
+          helperQ.add(mainQ.remove());
+      }
+      mainQ.add(val);
+      while(helperQ.size() > 0){
+          mainQ.add(helperQ.remove());
+      }
+    }
+
+    int pop() {
+      // write your code here
+      if(mainQ.size() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }
+      else{
+          return mainQ.remove();
+      }
+    }
+
+    int top() {
+      // write your code here
+        if(mainQ.size() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }
+      else{
+          return mainQ.peek();
+      }
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    QueueToStackAdapter st = new QueueToStackAdapter();
+
+    String str = br.readLine();
+    while (str.equals("quit") == false) {
+      if (str.startsWith("push")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        st.push(val);
+      } else if (str.startsWith("pop")) {
+        int val = st.pop();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("top")) {
+        int val = st.top();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size")) {
+        System.out.println(st.size());
+      }
+      str = br.readLine();
+    }
+  }
+}
+
+Q.5) Stack to Queue - Add efficient
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static class StackToQueueAdapter {
+    Stack<Integer> mainS;
+    Stack<Integer> helperS;
+
+    public StackToQueueAdapter() {
+      mainS = new Stack<>();
+      helperS = new Stack<>();
+    }
+
+    int size() {
+      // write your code here
+      return mainS.size();
+    }
+
+    void add(int val) {
+      // write your code here
+      mainS.push(val);
+    }
+
+    int remove() {
+      // write your code here
+      if(size() == 0){
+          System.out.println("Queue underflow");
+          return -1;
+      }else{
+          while(mainS.size() > 1){
+              helperS.push(mainS.pop());
+          }
+          int val = mainS.pop();
+        //   helperS.push(val);
+          while(helperS.size() > 0){
+              mainS.push(helperS.pop());
+          }
+          return val;
+      }
+    }
+  
+    
+
+    int peek() {
+      // write your code here
+      if(size() == 0){
+          System.out.println("Queue underflow");
+          return -1;
+      }else{
+          while(mainS.size() > 1){
+              helperS.push(mainS.pop());
+          }
+          int val = mainS.pop();
+          helperS.push(val);
+          while(helperS.size() > 0){
+              mainS.push(helperS.pop());
+          }
+          return val;
+      }
+    }
+  }
+  
+  
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StackToQueueAdapter qu = new StackToQueueAdapter();
+
+    String str = br.readLine();
+    while (str.equals("quit") == false) {
+      if (str.startsWith("add")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        qu.add(val);
+      } else if (str.startsWith("remove")) {
+        int val = qu.remove();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("peek")) {
+        int val = qu.peek();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size")) {
+        System.out.println(qu.size());
+      }
+      str = br.readLine();
+    }
+  }
+}
+
+Q.6) Stack to queue- remove efficient
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static class StackToQueueAdapter {
+    Stack<Integer> mainS;
+    Stack<Integer> helperS;
+
+    public StackToQueueAdapter() {
+      mainS = new Stack<>();
+      helperS = new Stack<>();
+    }
+
+    int size() {
+      // write your code here!
+      return mainS.size();
+    }
+
+    void add(int val) {
+      // write your code here
+      while(mainS.size() > 0){
+          helperS.push(mainS.pop());
+          
+      }
+        mainS.push(val);
+      while(helperS.size() > 0){
+          mainS.push(helperS.pop());
+      }
+    }
+
+    int remove() {
+      // write your code here
+      if(mainS.size() == 0){
+          System.out.println("Queue underflow");
+          return -1;
+      }
+      else{
+          return mainS.pop();
+      }
+    }
+
+    int peek() {
+      // write your code here
+       if(mainS.size() == 0){
+          System.out.println("Queue underflow");
+          return -1;
+      }
+      else{
+          return mainS.peek();
+      }
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StackToQueueAdapter qu = new StackToQueueAdapter();
+
+    String str = br.readLine();
+    while (str.equals("quit") == false) {
+      if (str.startsWith("add")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        qu.add(val);
+      } else if (str.startsWith("remove")) {
+        int val = qu.remove();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("peek")) {
+        int val = qu.peek();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size")) {
+        System.out.println(qu.size());
+      }
+      str = br.readLine();
+    }
+  }
+}
+
+Q.7) Two Stacks in an Array
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static class TwoStack {
+    int[] data;
+    int tos1;
+    int tos2;
+
+    public TwoStack(int cap) {
+      // write your code here
+      data = new int[cap];
+      tos1 = -1;
+      tos2 = data.length;
+    }
+
+    int size1() {
+      // write your code here
+      return tos1+1;
+    }
+
+    int size2() {
+      // write your code here
+      return data.length - tos2;
+    }
+
+    void push1(int val) {
+      // write your code here
+      if(tos2 == tos1 +1){
+          System.out.println("Stack overflow");
+         
+      }else{
+          tos1++;
+          data[tos1] = val;
+      }
+    }
+
+    void push2(int val) {
+      // write your code here
+       if(tos2 == tos1 +1){
+          System.out.println("Stack overflow");
+         
+      }else{
+          tos2--;
+          data[tos2] = val;
+      }
+    }
+
+    int pop1() {
+      // write your code here
+      if(size1() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          int val = data[tos1];
+          tos1--;
+          return val;
+      }
+    }
+
+    int pop2() {
+      // write your code here
+      if( size2() == 0 ){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          int val = data[tos2];
+          tos2++;
+          return val;
+      }
+    }
+
+    int top1() {
+      // write your code here
+      if(size1() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          return data[tos1];
+      }
+    }
+
+    int top2() {
+      // write your code here
+        if(size2() == 0){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{
+          return data[tos2];
+      }
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    TwoStack st = new TwoStack(n);
+
+    String str = br.readLine();
+    while (str.equals("quit") == false) {
+      if (str.startsWith("push1")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        st.push1(val);
+      } else if (str.startsWith("pop1")) {
+        int val = st.pop1();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("top1")) {
+        int val = st.top1();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size1")) {
+        System.out.println(st.size1());
+      } else if (str.startsWith("push2")) {
+        int val = Integer.parseInt(str.split(" ")[1]);
+        st.push2(val);
+      } else if (str.startsWith("pop2")) {
+        int val = st.pop2();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("top2")) {
+        int val = st.top2();
+        if (val != -1) {
+          System.out.println(val);
+        }
+      } else if (str.startsWith("size2")) {
+        System.out.println(st.size2());
+      }
+      str = br.readLine();
+    }
+  }
+}
