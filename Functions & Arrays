@@ -12,3 +12,18 @@ public static int getValueInBase(int n, int b){
        }
        return ans;
    }
+
+Q) Any Base to Decimal
+
+ public static int getValueIndecimal(int n, int b){
+      // write your code here
+      int ans = 0;
+      int exp = 0;
+      while(n > 0){
+          int rem = n % 10;
+          ans += rem*(int)Math.pow(b,exp);
+          exp++;
+          n = n / 10;
+      }
+      return ans;
+   }
