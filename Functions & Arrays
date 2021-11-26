@@ -1,0 +1,14 @@
+Q) Decimal to Any Base
+
+public static int getValueInBase(int n, int b){
+       // write code here
+       int ans = 0;
+       int exp = 0;
+       while(n > 0){
+           int rem = n % b;
+           ans += rem * (int)Math.pow(10, exp);
+           exp++;
+           n = n / b;
+       }
+       return ans;
+   }
